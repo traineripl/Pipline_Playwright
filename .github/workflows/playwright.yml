@@ -1,0 +1,40 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: WS04_sharding
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v7
+
+      - name: Installation de Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Installation des dépendances
+        run: npm ci
+
+      - name: Installation du navigateur Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Lancement des tests
+        run: npx playwright test
+
+      - name: Publication du rapport HTML
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: playwright-report
+          path: WS04_sharding/playwright-report/
+          retention-days: 7
