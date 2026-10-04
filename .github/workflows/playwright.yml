@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: WS04_sharding
+        working-directory: Pipline_Playwright
 
     steps:
       - name: Checkout du code
