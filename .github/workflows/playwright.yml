@@ -9,9 +9,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Pipline_Playwright
 
     steps:
       - name: Checkout du code
@@ -36,5 +33,5 @@ jobs:
         if: always()
         with:
           name: playwright-report
-          path: WS04_sharding/playwright-report/
+          path: playwright-report/
           retention-days: 7
